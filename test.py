@@ -2,13 +2,12 @@ import argparse
 import cv2
 from detectron2 import model_zoo
 from detectron2.config import get_cfg
-from detectron2.data.datasets import register_coco_instances, load_coco_json
-from detectron2.data import DatasetCatalog, MetadataCatalog
+from detectron2.data.datasets import register_coco_instances
+from detectron2.data import MetadataCatalog
 from detectron2.engine import DefaultPredictor
 import json
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import numpy as np
 import os
 
 plt.rcParams['font.family'] = 'FreeSans'
@@ -38,7 +37,7 @@ def visualize_outputs(image, outputs, save_path):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Example train and test scripts')
+    parser = argparse.ArgumentParser(description='Example test script')
     parser.add_argument('-i', '--image', required=True,
                         help='Sample image')
     parser.add_argument('-c', '--config', required=True,
@@ -48,16 +47,13 @@ def parse_args():
 
 def main(args):
     dataset_name = 'b3d_test'
-    annotations_path = '../vision/annotations/test.json'
-    images_path = '../vision/images/test'
+    annotations_path = 'vision/annotations/test.json'
+    images_path = 'vision/images/test'
     register_coco_instances(dataset_name, {}, annotations_path, images_path)
-    dataset_dicts = load_coco_json(annotations_path, images_path, dataset_name)
     MetadataCatalog.get(dataset_name).thing_classes = ['vehicle']
-    metadata = MetadataCatalog.get(dataset_name)
 
     with open(args.config) as fp:
         config = json.load(fp)
-    print('Running model configuration {}'.format(args.config))
     cfg = get_cfg()
     cfg.merge_from_file(model_zoo.get_config_file(config['config']))
     cfg.MODEL.WEIGHTS = config['weights']
@@ -78,6 +74,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    args = parse_args()
-    main(args)
-
+    main(parse_args())

@@ -18,34 +18,16 @@ After downloading, the *full* structure of the dataset repository should be as f
 ```
 .
 ├── configs
-│   ├── config_quick.json
-│   └── config_refined.json
+│   ├── config_quick.json
+│   └── config_refined.json
 ├── Dockerfile
 ├── download.py
+├── LICENSE
 ├── README.md
 ├── test.py
 ├── train.py
 ├── videos
-│   ├── hwy00.mp4
-│   ├── hwy01.mp4
-│   ├── hwy02.mp4
-│   ├── hwy03.mp4
-│   ├── hwy04.mp4
-│   ├── hwy05.mp4
-│   ├── hwy06.mp4
-│   ├── hwy07.mp4
-│   ├── hwy08.mp4
-│   ├── hwy09.mp4
-│   ├── hwy10.mp4
-│   ├── hwy11.mp4
-│   ├── jnc00.mp4
-│   ├── jnc01.mp4
-│   ├── jnc02.mp4
-│   ├── jnc03.mp4
-│   ├── jnc04.mp4
-│   ├── jnc05.mp4
-│   ├── jnc06.mp4
-│   └── jnc07.mp4
+│   └── <20 mp4 files>
 └── vision
     ├── annotations
     │   ├── test.json
@@ -94,5 +76,5 @@ python test.py -i vision/images/test/01_034_01.jpg -c configs/config_quick.json
 ```
 The result will be exported to `output/out.jpg`.
 
-## Issues
-Please direct your questions and comments to Fangyu Wu at fangyuwu@berkeley.edu.
+## Citation
+The dataset will be documented in details in a paper that is to be published.

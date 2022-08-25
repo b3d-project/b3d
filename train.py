@@ -1,13 +1,11 @@
 import argparse
-import detectron2
 from detectron2 import model_zoo
 from detectron2.config import get_cfg
-from detectron2.data import MetadataCatalog, DatasetCatalog
-from detectron2.data.datasets import register_coco_instances, load_coco_json
+from detectron2.data import MetadataCatalog
+from detectron2.data.datasets import register_coco_instances
 from detectron2.engine import DefaultTrainer
 from detectron2.utils.logger import setup_logger
 import json
-import numpy as np
 import os
 import torch
 setup_logger()
@@ -16,15 +14,8 @@ print(
     'CUDA availability:', torch.cuda.is_available())
 
 
-def register_dataset(dataset_name, annotation_path, image_path):
-    register_coco_instances(dataset_name, {}, annotation_path, image_path)
-    dataset_dicts = load_coco_json(annotation_path, image_path, dataset_name)
-    MetadataCatalog.get(dataset_name).thing_classes = ['vehicle']
-    metadata = MetadataCatalog.get(dataset_name)
-
-
 def parse_args():
-    parser = argparse.ArgumentParser(description='Example train and test scripts')
+    parser = argparse.ArgumentParser(description='Example train script')
     parser.add_argument('-c', '--config', required=True,
                         help='Detection model configuration')
     return parser.parse_args()
@@ -32,20 +23,19 @@ def parse_args():
 
 def main(args):
     dataset_name = 'b3d_train'
-    annotation_path = '../vision/annotations/train.json'
-    image_path = '../vision/images/train'
-    register_dataset(dataset_name, annotation_path, image_path)
+    annotation_path = 'vision/annotations/train.json'
+    image_path = 'vision/images/train'
+    register_coco_instances(dataset_name, {}, annotation_path, image_path)
+    MetadataCatalog.get(dataset_name).thing_classes = ['vehicle']
 
     with open(args.config) as fp:
         config = json.load(fp)
-    print('Running model configuration {}'.format(args.config))
     cfg = get_cfg()
-    cfg_file = config['config']
-    cfg.merge_from_file(model_zoo.get_config_file(cfg_file))
+    cfg.merge_from_file(model_zoo.get_config_file(config['config']))
     cfg.DATASETS.TRAIN = ('b3d_train',)
     cfg.DATASETS.TEST = ()
     cfg.DATALOADER.NUM_WORKERS = config['dataloader_num_workers']
-    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(cfg_file)
+    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(config['config'])
     cfg.MODEL.ROI_HEADS.NUM_CLASSES = config['num_classes']
     cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = config['batch_size_per_image']
     cfg.MODEL.ANCHOR_GENERATOR.SIZES = config['anchor_generator_sizes']
@@ -60,5 +50,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    args = parse_args()
-    main(args)
+    main(parse_args())
