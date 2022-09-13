@@ -83,5 +83,17 @@ python test.py -i vision/images/test/01_034_01.jpg -c configs/config_quick.json
 ```
 The result will be exported to `output/out.jpg`.
 
+Lastly, we provide a masking script `mask.py` that crops an image according to a pre-defined polygonal mask.
+The mask is expected to be made in CVAT through creating a polygon with the category name `domain`.
+For example, please download the 
+[example mask](https://drive.google.com/file/d/1JdOlkYjYV_lI79tDA79WhXseun61E6SM/view?usp=sharing) with the corresponding 
+[example image](https://drive.google.com/file/d/1xOHCyKPunfHpzbr64n5oB8rNS6vz-fpM/view?usp=sharing).
+Move those files into the `output/` directory and run
+```
+python mask.py --image output/example_masking.png --mask output/example_masking.xml
+```
+The masked image will be saved to `output/masked_image.png` and a visualization of the mask to `output/mask_overlay.png`.
+To mask a video, simply apply the same masking to every frame of the video.
+
 ## Citation
 The dataset will be documented in details in a paper that is to be published.
