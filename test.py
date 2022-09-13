@@ -13,6 +13,15 @@ import os
 plt.rcParams['font.family'] = 'FreeSans'
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description='Example test script')
+    parser.add_argument('-i', '--image', required=True,
+                        help='Sample image')
+    parser.add_argument('-c', '--config', required=True,
+                        help='Detection model configuration')
+    return parser.parse_args()
+
+
 def visualize_outputs(image, outputs, save_path):
     instances = outputs['instances'].to('cpu')
     cmap = plt.cm.get_cmap('terrain', len(instances.pred_boxes))
@@ -27,22 +36,13 @@ def visualize_outputs(image, outputs, save_path):
         length = box[3] - box[1]
         rect = patches.Rectangle(
             origin, width, length, 
-            linewidth=1, edgecolor=cmap(index), 
-            facecolor=cmap(index), alpha=0.5)
+            linewidth=2, edgecolor=cmap(index),
+            facecolor='w', alpha=0.5)
         ax.add_patch(rect)
         ax.text(
             box[0] + 2, box[3] - 5, '{:.2f}'.format(score), 
-            color='k', size='xx-small')
+            color='k', size='small')
     plt.savefig(save_path, bbox_inches='tight', pad_inches=0)
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(description='Example test script')
-    parser.add_argument('-i', '--image', required=True,
-                        help='Sample image')
-    parser.add_argument('-c', '--config', required=True,
-                        help='Detection model configuration')
-    return parser.parse_args()
 
 
 def main(args):

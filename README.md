@@ -67,6 +67,13 @@ python train.py -c configs/config_quick.json
 ```
 The trained model will be saved to `output/model_final.pth`.
 
+Alternatively, one can skip the training by downloading a pre-trained model as follows
+```
+python download.py --skip_videos --skip_images --pull_model
+```
+The trained model will be downloaded to `output/model_final.pth`.
+Note that this model is trained with `config_refined.json`.
+
 A test script `test.py` is provided to run the trained model on a sample image.
 
 For instance, to use the test script on the image `vision/images/test/01_034_01.jpg`, run
