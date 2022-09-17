@@ -96,4 +96,12 @@ The masked image will be saved to `output/masked_image.png` and a visualization 
 To mask a video, simply apply the same masking to every frame of the video.
 
 ## Citation
-The dataset will be documented in details in a paper that is to be published.
+If you find this dataset useful, please consider cite the accompanying paper below:
+```
+@article{wu2022b3d,
+  title={Decentralized Vehicle Coordination: The Berkeley DeepDrive Drone Dataset},
+  author={Fangyu Wu and Dequan Wang and Minjune Hwang and Chenhui Hao and Jiawei Lu and Andrew Zhang and Christopher Chou and Trevor Darrell and Alexandre Byen},
+  journal={arXiv},
+  year={2022}
+}
+```
