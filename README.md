@@ -100,7 +100,7 @@ If you find this dataset useful, please consider cite the accompanying paper bel
 ```
 @article{wu2022b3d,
   title={Decentralized Vehicle Coordination: The Berkeley DeepDrive Drone Dataset},
-  author={Fangyu Wu and Dequan Wang and Minjune Hwang and Chenhui Hao and Jiawei Lu and Andrew Zhang and Christopher Chou and Trevor Darrell and Alexandre Byen},
+  author={Fangyu Wu and Dequan Wang and Minjune Hwang and Chenhui Hao and Jiawei Lu and Jiamu Zhang and Christopher Chou and Trevor Darrell and Alexandre Byen},
   journal={arXiv},
   year={2022}
 }
