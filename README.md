@@ -45,7 +45,7 @@ After downloading, the *full* structure of the dataset repository should be as f
 ## Getting Started
 We recommend running the script in a Docker container.
 Please follow the instructions [here](https://docs.docker.com/engine/install/) to install Docker and 
-instructions [here](https://github.com/NVIDIA/nvidia-docker) to install NVIDIA Container Toolkit.
+instructions [here](https://github.com/NVIDIA/nvidia-container-toolkit) to install NVIDIA Container Toolkit.
 
 After installing Docker and NVIDIA Container Toolkit, build the required Docker image
 ```
