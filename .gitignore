@@ -130,6 +130,7 @@ dmypy.json
 
 # Project specific folders
 .idea/
+.vscode/
 videos/
 vision.zip
 vision/
