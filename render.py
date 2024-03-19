@@ -10,7 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Example rendering script')
     parser.add_argument('-v', '--video', required=True,
                         help='Input video')
-    parser.add_argument('-r', '--rendering', required=True,
+    parser.add_argument('-d', '--data', required=True,
                         help='Data for rendering detected and tracking results')
     parser.add_argument('-m', '--mask', required=True,
                         help='Mask for the video')
