@@ -43,21 +43,22 @@ def parse_args():
 def main(args):
     if not args.skip_videos:
         print('Downloading videos...')
+        # https://drive.google.com/drive/folders/1UcVuWcqHdxq4D5O8M02o4zZKSvDRtEd6?usp=sharing
         cmd = 'mkdir -p videos'
         subprocess.run(cmd.split(' '))
-        for video_id in VIDEO_IDS:
-            gdown.download(id=video_id, output='videos/')
-        subprocess.run(cmd.split(' '))
+        gdown.download_folder(id='1UcVuWcqHdxq4D5O8M02o4zZKSvDRtEd6')
     if not args.skip_images:
         print('Downloading annotated images...')
-        gdown.download(id='1fAF6oX6bukU6EZruWWh3DtPa8inT8syy')
+        # https://drive.google.com/file/d/1v2Go30iTtbNDnOcmoSPueF4Mp93P5Lbg/view?usp=sharing
+        gdown.download(id='1v2Go30iTtbNDnOcmoSPueF4Mp93P5Lbg')
         cmd = 'unzip vision.zip'
         subprocess.run(cmd.split(' '))
         cmd = 'rm vision.zip'
         subprocess.run(cmd.split(' '))
     if args.pull_model:
         print('Downloading model...')
-        gdown.download(id='1ZDnOz0Opu7fhwXvcL5TMNyUEQc73dnGG')
+        # https://drive.google.com/file/d/17ZiwW_11q5oLldTCXuXjCpd8FQ7MjKaD/view?usp=sharing
+        gdown.download(id='17ZiwW_11q5oLldTCXuXjCpd8FQ7MjKaD')
         cmd = 'mkdir -p output'
         subprocess.run(cmd.split(' '))
         cmd = 'mv model_final.pth output/'
