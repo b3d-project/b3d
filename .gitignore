@@ -135,3 +135,5 @@ videos/
 vision.zip
 vision/
 output/
+shared/
+.DS_Store
